@@ -32,7 +32,7 @@ Load the resulting .heapdump files into the chrome memory profiler.
 
 ## Problem Description ##
 
-This project illustrates two separate applications: ws (https://github.com/einaros/ws) and http-proxy (https://github.com/nodejitsu/node-http-proxy), having a similar issue where long lived sessions can 
+This project illustrates three applications: [ws](https://github.com/einaros/ws), [socket.io](https://github.com/LearnBoost/socket.io) and [http-proxy](https://github.com/nodejitsu/node-http-proxy), having a similar issue where long lived sessions can 
 reference large "slab memory buffers" in node.  The reference to a slab buffer will prevent it from being garbage collected
 and a scenario can occur where in a very short period of time total memory in a system can be exhausted.
 
