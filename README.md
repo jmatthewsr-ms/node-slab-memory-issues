@@ -71,11 +71,11 @@ The 'ws' module holds a reference to the 'head' object for backwards compatibili
 
 Before any changes:
 
-![wss before](node-slab-memory-issues/docs/mem-pressure-wss-before.jpg)
+![wss before](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-wss-before.jpg)
 
 After
 
-![wss after](node-slab-memory-issues/docs/mem-pressure-wss-after.jpg)
+![wss after](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-wss-after.jpg)
 
 ### 'socket.io' Module ###
 
@@ -88,8 +88,8 @@ The 'http-proxy' module holds references to the 'head' object of the inbound web
 
 Before any changes:
 
-![proxy before](node-slab-memory-issues/docs/mem-pressure-proxy-before.jpg)
+![proxy before](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-proxy-before.jpg)
 
 After
 
-![proxy after](node-slab-memory-issues/docs/mem-pressure-proxy-after.jpg)
+![proxy after](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-proxy-after.jpg)
