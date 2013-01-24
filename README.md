@@ -1,4 +1,4 @@
-# node-memorypressure-slabbuffer #
+# node-slab-memory-issues #
 Node memory pressure demonstration caused by two different slab buffer implementations.
 
 ## Usage ##
