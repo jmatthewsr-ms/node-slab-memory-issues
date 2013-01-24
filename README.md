@@ -71,11 +71,11 @@ The 'ws' module holds a reference to the 'head' object for backwards compatibili
 
 Before any changes:
 
-![wss before](docs/mem-pressure-wss-before.jpg)
+![wss before](./docs/mem-pressure-wss-before.jpg)
 
 After
 
-![wss after](docs/mem-pressure-wss-after.jpg)
+![wss after](./docs/mem-pressure-wss-after.jpg)
 
 ### 'socket.io' Module ###
 
