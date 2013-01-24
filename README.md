@@ -1,4 +1,4 @@
-# node-memorypressure-slabbuffer #
+# node-slab-memory-issues #
 Node memory pressure demonstration caused by two different slab buffer implementations.
 
 ## Usage ##
@@ -51,23 +51,20 @@ for the sample projects listed here are located in tls.js and stream_wrap.cc.
 
 tls.js:
 
-'''
-SlabBuffer.prototype.create = function create() {
-  this.isFull = false;
-  this.pool = new Buffer(10 * 1024 * 1024); 
-  this.offset = 0;
-  this.remaining = this.pool.length;
-};
-'''
+    SlabBuffer.prototype.create = function create() {
+      this.isFull = false;
+      this.pool = new Buffer(10 * 1024 * 1024); 
+      this.offset = 0;
+      this.remaining = this.pool.length;
+    };
 
-stream_wrap.cc
-'''
-#define SLAB_SIZE (1024 * 1024)
-'''
+stream_wrap.cc:
+
+    \#define SLAB_SIZE (1024 * 1024)
 
 ### 'ws' Module ###
 
-The 'ws' module holds a reference to the 'head' object for backwards compatibility with older revs of the websocket spec.
+The 'ws' module holds a reference to the 'head' object during an upgrade to a websocket.
 
 Before any changes:
 
