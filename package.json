@@ -10,7 +10,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git@github.com:jmatthewsr-ms/node-memorypressure-slabbuffer"
+    "url": "git@github.com:jmatthewsr-ms/node-slab-memory-issues"
   },
   "author": "",
   "license": "",
