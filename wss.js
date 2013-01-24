@@ -2,11 +2,11 @@
 
 var WebSocketServer = require('ws').Server,
 	stats = {
-		connected : 0
+		connected: 0
 	},
-	config = JSON.parse(require('fs').readFileSync('config.json','utf8'));
+	config = JSON.parse(require('fs').readFileSync('config.json', 'utf8'));
 
-function createServer () {
+function createServer() {
 	var wss = new WebSocketServer({
 		port: config.wss_port
 	});
@@ -14,7 +14,7 @@ function createServer () {
 	wss.on('connection', function(ws) {
 		stats.connected++;
 
-		ws.on('close', function () {
+		ws.on('close', function() {
 			stats.connected--;
 		});
 
@@ -24,10 +24,10 @@ function createServer () {
 
 createServer();
 
-setInterval(function () {
-	console.log('stats',stats);
-},5000);
+setInterval(function() {
+	console.log('stats', stats);
+}, 5000);
 
-require('./heapdump').startSnapshotServer(config.wss_heapdump_port, function () {
-		console.log('heapdump snapshot enabled at http://localhost:' + config.wss_heapdump_port+'/snapshot\n',config);
+require('./heapdump').startSnapshotServer(config.wss_heapdump_port, function() {
+	console.log('heapdump snapshot enabled at http://localhost:' + config.wss_heapdump_port + '/snapshot\n', config);
 });

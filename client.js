@@ -45,8 +45,6 @@ function sendData(ws) {
 }
 
 //data connection is used to fill slab buffers on the remote proxy/server
-
-
 function createDataConnection() {
 	var ws = new WebSocket('wss://localhost:' + config.proxy_port);
 
@@ -61,8 +59,6 @@ function createDataConnection() {
 }
 
 //connections are used to "pin" slab buffers in memory on the server/proxy
-
-
 function createConnection() {
 	var ws = new WebSocket('wss://localhost:' + config.proxy_port);
 
@@ -82,7 +78,6 @@ function connect() {
 	for(i = 0; i < count; i++) {
 		createConnection();
 	}
-
 	setTimeout(connect, config.client_connectDelay);
 }
 

@@ -13,7 +13,7 @@
     "url": "git@github.com:jmatthewsr-ms/node-memorypressure-slabbuffer"
   },
   "author": "",
-  "license": "",  
+  "license": "",
   "engines": {
     "node": ">= 0.8.0"
   }
