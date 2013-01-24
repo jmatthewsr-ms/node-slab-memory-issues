@@ -22,8 +22,10 @@ The client will stop creating new connections after it reaches the client_maxCon
 
 When the client has reached client_maxConnections, open the following URL's (the ports are configurable via config.json)
 
+Take a heapdump for the proxy server:
 'http://localhost:8601/snapshot'
 
+Take a heapdump for the wss server:
 'http://localhost:8801/snapshot'
 
 Load the resulting .heapdump files into the chrome memory profiler.
