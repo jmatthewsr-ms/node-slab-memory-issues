@@ -1,0 +1,20 @@
+{
+  "name": "node-memorypressure-slabbuffer",
+  "version": "0.1.0",
+  "description": "Node memory pressure demonstration caused by two different slab buffer implementations.",
+  "dependencies": {
+    "heapdump": "git://github.com/bnoordhuis/node-heapdump.git#windows-support",
+    "http-proxy": "~0.8.7",
+    "ws": "~0.4.25"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jmatthewsr-ms/node-memorypressure-slabbuffer"
+  },
+  "author": "",
+  "license": "",  
+  "engines": {
+    "node": ">= 0.8.0"
+  }
+}

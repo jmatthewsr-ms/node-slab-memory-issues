@@ -1,0 +1,15 @@
+{
+	"proxy_port" : 8600,
+	"proxy_heapdump_port" : 8601,
+	"proxy_target" : {
+		"host" : "localhost",
+		"port" : 8800
+	},
+	"wss_port" : 8800,
+	"wss_heapdump_port" : 8801,
+	"client_heapdump_port" : 8802,
+	"client_dataSize" : 1000000,
+	"client_dataDelay" : 1000,
+	"client_connectionspersecond" : 1,
+	"client_maxConnections" : 100
+}
