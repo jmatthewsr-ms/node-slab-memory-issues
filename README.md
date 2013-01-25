@@ -97,3 +97,11 @@ Before any changes:
 After
 
 ![proxy after](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-proxy-after.jpg)
+
+### Node Core ###
+
+After the fixes were applied in the above examples for ws and http-proxy, you can still notice many 8k buffers retained.
+This is because nodejs uses a slab buffer for every Buffer object created that's under 8k bytes. 
+
+Having node core emit an upgrade header that is not backed by this slab buffer seems like a reasonable solution that won't
+have any overhead for apps that retain the head reference.
