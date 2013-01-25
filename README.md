@@ -16,6 +16,8 @@ Run the following three apps:
 
 'node client'
 
+Run the client last.  The client will attempt websocket connections to the wss (webscocket server) via the proxy.
+
 The client will stop creating new connections after it reaches the client_maxConnections value specified in config.json.
 
 ### Saving Heapdumps ###
