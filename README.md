@@ -100,8 +100,33 @@ After
 
 ### Node Core ###
 
-After the fixes were applied in the above examples for ws and http-proxy, you can still notice many 8k buffers retained.
-This is because nodejs uses a slab buffer for every Buffer object created that's under 8k bytes. 
+The above sections show that modules can avoid large slab buffer retention due to the 'head' reference from a websocket upgrade.
+It is also possible for the node core to remove the reference to the large slab buffers (both the 1MB and 10MB buffers) by copying
+the upgrade head data to a new Buffer that is not backed by a large slab:
 
-Having node core emit an upgrade header that is not backed by this slab buffer seems like a reasonable solution that won't
-have any overhead for apps that retain the head reference.
+http.js:
+
+    // This is start + byteParsed
+    //var bodyHead = d.slice(start + bytesParsed, end);
+    var bodyHead = new Buffer(end - start - bytesParsed);     
+    d.copy(bodyHead,0,start + bytesParsed, end); 
+
+This code will replace the reference to the large slabs, but after this change the data is *still* referencing an underlying
+optimization buffer called Buffer.pool in buffer.js.  The size of this buffer is much smaller (8k) however. Notice that the
+above solutions for apps like ws, socket.io and http-proxy of also copying the head data will result in the same 8k retention.
+
+Having node core emit the 'head' data on an 'upgrade' event that is not backed by any optimization buffer would be the only way
+to completely resolve this without apps modifying their code.
+
+Below is the before and after heapdumps for node.exe before the above http.js modifications and after.  The test is capturing the
+heapdump from the 'wss' process after 100 connections.  The wss and proxy modules have *not* been modified in this test, so the
+better memory usage is due only to the above patch in node.exe.
+
+Before:
+
+![node before](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-node-before.jpg)
+
+After:
+
+![node before](https://raw.github.com/jmatthewsr-ms/node-slab-memory-issues/master/docs/mem-pressure-node-after.jpg)
+
