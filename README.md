@@ -68,7 +68,8 @@ stream_wrap.cc:
 
 ### 'ws' Module ###
 
-The 'ws' module holds a reference to the 'head' object during an upgrade to a websocket.
+The 'ws' module holds a reference to the 'head' object during an upgrade to a websocket.  'head' will reference
+the 1MB stream_wrapp.cc buffer.
 
 Before any changes:
 
@@ -85,7 +86,9 @@ issue by retaining 'head'.
 
 ### 'http-proxy' Module ###
 
-The 'http-proxy' module holds references to the 'head' object of the inbound websocket in the proxyWebSocketRequest() function
+The 'http-proxy' module holds references to the 'head' object of the inbound websocket in proxyWebSocketRequest().
+This 'head' reference will retain the 10MB tls.js slab buffer.  Note that for unsecure (non TLS) connections, the
+10MB slab buffer is not an issue.
 
 Before any changes:
 
