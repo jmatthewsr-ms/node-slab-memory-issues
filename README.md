@@ -40,14 +40,14 @@ and a scenario can occur where in a very short period of time total memory in a 
 
 In general this type of memory issue can occur in any nodejs application if the following are met:
 
-* A reference to the 'head' variable received from http event handlers is never released.
-* Enough data is sent to fill, and thus create, new slab buffers (both the tcp socket 1MB slab and the tls 10MB slab).
-* The long-lived references to 'head' are created at a rate at least as fast as the slab buffers creation rate.
+* A reference to the 'head' variable (or a reference to any data referencing a slab) received from http event handlers is never released.
+* The duration of some connections are longer than the time it takes to fill a slab buffer (turnover rate).
+* Some of these long-lived connections are referencing different slab buffers.
+* Enough of these long-lived connections referencing different slab buffers are active to cause a memory issue.
 
-The http-proxy and ws modules used as examples in this project satisfy the above criteria if the following are true:
 
-* Long-lived websocket connections are created at a rate at least as fast as slab buffers are created.
-* Enough data is sent across the websocket to create new slab buffers.
+The http-proxy and ws modules used as examples in this project satisfy the above criteria.
+The example code reproduces this problem using a minimal number of long-lived connections to illustrate the issue. It's possible in an extreme case to have a single websocket connection cause 10MB of memory usage.  10 of these connections would use 100MB.
 
 ### Slab Buffers ###
 Nodejs uses "Slab Buffers" to improve performance by writing memory to a large block of contiguous memory instead of creating many small objects dynamically.  The two slab buffers that are causing issues 
